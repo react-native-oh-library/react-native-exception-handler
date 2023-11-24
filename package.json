@@ -1,36 +1,48 @@
 {
   "name": "react-native-exception-handler",
-  "version": "2.10.10",
+  "version": "2.10.10-0.0.2",
   "description": "A react native module that lets you to register a global error handler that can capture fatal/non fatal uncaught exceptions.",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "typings": "lib/typescript/index.d.ts",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "!android/build",
+    "ios",
+    "!ios/build",
+    "harmony/exception_handler.har",
+    "!harmony/build",
+    "!harmony/oh_modules",
+    "dist",
+    "ReactNativeExceptionHandler.podspec",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
   "scripts": {
-    "test": "echo no tests && exit 1",
-    "lint": "eslint app/",
-    "lint:fix": "eslint app/ --fix"
+    "bob": "bob build",
+    "prepack": "bob build",
+    "prepare": "npm run bob",
+    "build": "dv-scripts build && cp src/index.js.flow dist/index.js.flow && cp src/index.js.flow dist/index.cjs.js.flow",
+    "lint": "dv-scripts lint",
+    "release": "dv-scripts release",
+    "test": "dv-scripts test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/a7ul/react-native-exception-handler"
   },
   "keywords": [
-    "modal",
     "react",
     "native",
     "exception",
-    "handler",
-    "red",
-    "screen",
-    "production",
-    "ios",
-    "android",
-    "bug",
-    "capture"
+    "handler"
   ],
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
   "author": "a7ul",
   "license": "MIT",
   "bugs": {
@@ -38,9 +50,31 @@
   },
   "homepage": "https://github.com/a7ul/react-native-exception-handler",
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.0.0",
-    "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-react-native": "^2.3.2"
+    "@types/react": "^18.2.12",
+    "react-native-builder-bob": "^0.20.4",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "RNExceptionHandlerSpec",
+    "type": "all",
+    "jsSrcsDir": "src"
   }
 }

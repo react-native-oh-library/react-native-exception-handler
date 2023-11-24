@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "jsx": "react",
+      "baseUrl": "./",
+      "paths": {
+        "react-native-exception-handler": ["./src/index"]
+      },
+      "ignoreDeprecations":"5.0",
+      "allowUnreachableCode": false,
+      "allowUnusedLabels": false,
+      "esModuleInterop": true,
+      "importsNotUsedAsValues": "error",
+      "forceConsistentCasingInFileNames": true,
+      "lib": ["esnext"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noImplicitUseStrict": false,
+      "noStrictGenericChecks": false,
+      "noUncheckedIndexedAccess": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "target": "esnext"
+    }
+  }
