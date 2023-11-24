@@ -22,18 +22,17 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
-import { TurboModuleRegistry } from 'react-native';
+#ifndef EXCEPTIONHANDLERTURBOMODULE_H
+#define EXCEPTIONHANDLERTURBOMODULE_H
 
-interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
-      handler: (errMsg: string) => void,
-      forceAppQuit?: boolean,
-      executeDefaultHandler?: boolean
-    ): void;
+#include <ReactCommon/TurboModule.h>
+#include "RNOH/ArkTSTurboModule.h"
+
+namespace rnoh {
+  class JSI_EXPORT ExceptionHandlerTurboModuleSpecJSI : public ArkTSTurboModule 
+  {
+    public:
+      ExceptionHandlerTurboModuleSpecJSI(const ArkTSTurboModule::Context ctx, const std::string name);
+  }
 }
-
-interface Spec extends TurboModule, ExceptionHandlerTurboModuleProtocol {
-}
-
-export default TurboModuleRegistry.getEnforcing<Spec>('ExceptionHandlerTurboModule')
+#endif

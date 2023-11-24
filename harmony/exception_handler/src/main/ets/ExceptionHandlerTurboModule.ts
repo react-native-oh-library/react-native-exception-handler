@@ -22,18 +22,27 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
-import { TurboModuleRegistry } from 'react-native';
+import { TurboModule } from 'rnoh/ts';
+import errorManager from '@ohos.app.ability.errorManager';
+import process from '@ohos.process';
+import router from '@ohos.router';
 
-interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
-      handler: (errMsg: string) => void,
-      forceAppQuit?: boolean,
-      executeDefaultHandler?: boolean
-    ): void;
+export class ExceptionHandlerTurboModule extends TurboModule {
+  setHandlerforNativeException(handler: (errMsg: string) => void, forceAppQuit?: boolean, executeDefaultHandler?: boolean): void {
+    errorManager.on("error", { onUnhandledException: (errMsg) => {
+      handler?.(errMsg)
+
+      router.pushUrl({
+        url: 'pages/ExceptionView',
+        params: {
+          errMsg: errMsg
+        }
+      })
+
+      if (forceAppQuit) { // 是否强制退出
+        let pro = new process.ProcessManager();
+        pro.exit(0);
+      }
+    } });
+  }
 }
-
-interface Spec extends TurboModule, ExceptionHandlerTurboModuleProtocol {
-}
-
-export default TurboModuleRegistry.getEnforcing<Spec>('ExceptionHandlerTurboModule')

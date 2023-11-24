@@ -22,18 +22,38 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
-import { TurboModuleRegistry } from 'react-native';
+#ifndef EXCEPTIONHANDLERPACKAGE_H
+#define EXCEPTIONHANDLERPACKAGE_H
 
-interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
-      handler: (errMsg: string) => void,
-      forceAppQuit?: boolean,
-      executeDefaultHandler?: boolean
-    ): void;
+#include "ExceptionHandlerTurboModule.h"
+#include "RNOH/Package.h"
+
+using namespace rnoh;
+using namespace facebook;
+
+class ExceptionHandlerTurboModuleFactoryDelegate : public TurboModuleFactoryDelegate
+{
+  public:
+    SharedTurboModule createTurboModule(Context ctx, const std::string &name) const override
+    {
+      if (name == "ExceptionHandlerTurboModule") 
+      {
+        return std::make_shared<ExceptionHandlerTurboModuleSpecJSI>(ctx, name);
+      }
+      return nullptr;
+    }
 }
 
-interface Spec extends TurboModule, ExceptionHandlerTurboModuleProtocol {
+namespace rnoh 
+{
+  class ExceptionHandlerPackage : public Package 
+  {
+    public:
+      ExceptionHandlerPackage(Package::Context ctx) :Package(ctx) {}
+      std::unique_ptr<TurboModuleFactoryDelegate> createTurboModuleFactoryDelegate()
+      {
+        return std::make_unique<ExceptionHandlerTurboModuleFactoryDelegate>();
+      }
+  }
 }
-
-export default TurboModuleRegistry.getEnforcing<Spec>('ExceptionHandlerTurboModule')
+#endif

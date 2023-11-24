@@ -22,18 +22,24 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
-import { TurboModuleRegistry } from 'react-native';
+#include "ExceptionHandlerTurboModule.h"
 
-interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
-      handler: (errMsg: string) => void,
-      forceAppQuit?: boolean,
-      executeDefaultHandler?: boolean
-    ): void;
+using namespace rnoh;
+using namespace facebook;
+
+static jsi::Value _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerforNativeException(
+  jsi::Runtime &rt,
+  react::TurboModule &turboModule,
+  const jsi::Value *args,
+  size_t count)
+{
+  return static_cast<ArkTSTurboModule &>(turboModule).call(rt, "setHandlerforNativeException", args, count);
 }
 
-interface Spec extends TurboModule, ExceptionHandlerTurboModuleProtocol {
+ExceptionHandlerTurboModuleSpecJSI::ExceptionHandlerTurboModuleSpecJSI(
+  const ArkTSTurboModule::Context ctx,
+  const std::string name): ArkTSTurboModule(ctx, name)
+{
+  methodMap_["setHandlerforNativeException"] =
+    MethodMetadata{3, _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerforNativeException};
 }
-
-export default TurboModuleRegistry.getEnforcing<Spec>('ExceptionHandlerTurboModule')

@@ -22,18 +22,26 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
-import { TurboModuleRegistry } from 'react-native';
+import {RNPackage, TurboModulesFactory} from 'rnoh/ts';
+import type {TurboModule, TurboModuleContext} from 'rnoh/ts';
+import {ExceptionHandlerTurboModule} from './ExceptionHandlerTurboModule';
 
-interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
-      handler: (errMsg: string) => void,
-      forceAppQuit?: boolean,
-      executeDefaultHandler?: boolean
-    ): void;
+class ExceptionHandlerTurboModulesFactory extends TurboModulesFactory {
+  createTurboModule(name: string): TurboModule | null {
+    if (name === 'ExceptionHandlerTurboModule') {
+      globalThis.uiAbilityContext = this.ctx.uiAbilityContext;
+      return new ExceptionHandlerTurboModule(this.ctx);
+    }
+    return null;
+  }
+
+  hasTurboModule(name: string): boolean {
+    return name === 'ExceptionHandlerTurboModule';
+  }
 }
 
-interface Spec extends TurboModule, ExceptionHandlerTurboModuleProtocol {
+export class ExceptionHandlerPackage extends RNPackage {
+  createTurboModulesFactory(ctx: TurboModuleContext): TurboModulesFactory {
+    return new ExceptionHandlerTurboModulesFactory(ctx);
+  }
 }
-
-export default TurboModuleRegistry.getEnforcing<Spec>('ExceptionHandlerTurboModule')
