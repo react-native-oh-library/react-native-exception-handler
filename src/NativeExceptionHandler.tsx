@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
+import type { TurboModule } from 'react-native/Libraries/RCTExport';
 import { TurboModuleRegistry } from 'react-native';
 
 interface ExceptionHandlerTurboModuleProtocol {
