@@ -33,6 +33,6 @@ namespace rnoh {
   {
     public:
       ExceptionHandlerTurboModuleSpecJSI(const ArkTSTurboModule::Context ctx, const std::string name);
-  }
+  };
 }
 #endif

@@ -42,7 +42,7 @@ class ExceptionHandlerTurboModuleFactoryDelegate : public TurboModuleFactoryDele
       }
       return nullptr;
     }
-}
+};
 
 namespace rnoh 
 {
@@ -54,6 +54,6 @@ namespace rnoh
       {
         return std::make_unique<ExceptionHandlerTurboModuleFactoryDelegate>();
       }
-  }
+  };
 }
 #endif
