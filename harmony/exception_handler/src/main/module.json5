@@ -3,9 +3,7 @@
     "name": "exception_handler",
     "type": "har",
     "deviceTypes": [
-      "default",
-      "tablet",
-      "2in1"
+      "default"
     ]
   }
 }
