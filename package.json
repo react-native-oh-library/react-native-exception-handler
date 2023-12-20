@@ -17,20 +17,7 @@
   "files": [
     "src",
     "lib",
-    "android",
-    "!android/build",
-    "ios",
-    "!ios/build",
-    "harmony/exception_handler",
-    "harmony/exception_handler.har",
-    "!harmony/build",
-    "!harmony/oh_modules",
-    "dist",
-    "ReactNativeExceptionHandler.podspec",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
+    "harmony"
   ],
   "scripts": {
     "bob": "bob build",

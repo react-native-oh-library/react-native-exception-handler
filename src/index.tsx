@@ -24,28 +24,9 @@
 
 import ExceptionHandlerTurboModule from './NativeExceptionHandler'
 import { Platform } from "react-native";
+export { setJSExceptionHandler, getJSExceptionHandler } from "react-native-exception-handler/index"
 
 const noop = () => { };
-
-export const setJSExceptionHandler = (handler = noop, allowedInDevMode = false) => {
-  if (typeof allowedInDevMode !== "boolean" || typeof handler !== "function") {
-    console.log("setJSExceptionHandler is called with wrong argument types.. first argument should be callback function and second argument is optional should be a boolean");
-    console.log("Not setting the JS handler .. please fix setJSExceptionHandler call");
-    return;
-  }
-  const allowed = allowedInDevMode ? true : !__DEV__;
-  if (allowed) {
-    ErrorUtils.setGlobalHandler(handler);
-    const consoleError = console.error;
-    console.error = (...args) => {
-      consoleError(...args);
-    };
-  } else {
-    console.log("Skipping setJSExceptionHandler: Reason: In DEV mode and allowedInDevMode = false");
-  }
-};
-
-export const getJSExceptionHandler = () => ErrorUtils.getGlobalHandler();
 
 export const setNativeExceptionHandler = (handler = noop, forceAppQuit = true, executeDefaultHandler = false) => {
   if (typeof handler !== "function" || typeof forceAppQuit !== "boolean") {
@@ -61,10 +42,4 @@ export const setNativeExceptionHandler = (handler = noop, forceAppQuit = true, e
   } else {
     ExceptionHandlerTurboModule.setHandlerforNativeException(handler, forceAppQuit, executeDefaultHandler);
   }
-};
-
-export default {
-  setJSExceptionHandler,
-  getJSExceptionHandler,
-  setNativeExceptionHandler
 };
