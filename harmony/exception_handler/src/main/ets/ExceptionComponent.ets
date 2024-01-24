@@ -27,7 +27,7 @@ import appRecovery from '@ohos.app.ability.appRecovery';
 
 @Component
 export struct ExceptionComponent {
-  private errMsg: string;
+  private errMsg: string = "";
   @State message: string = 'SHOW DETAILS'
   @State visible: boolean = false
 
