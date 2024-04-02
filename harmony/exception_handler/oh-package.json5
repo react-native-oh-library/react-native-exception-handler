@@ -3,7 +3,7 @@
   "types": "",
   "devDependencies": {
   },
-  "name": "rnoh-exception-handler",
+  "name": "@react-native-oh-tpl/react-native-exception-handler",
   "description": "",
   "main": "index.ets",
   "version": "2.10.10-0.1.4",
