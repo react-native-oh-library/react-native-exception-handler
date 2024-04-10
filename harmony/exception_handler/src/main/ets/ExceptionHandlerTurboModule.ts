@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import { TurboModule } from 'rnoh/ts';
+import { TurboModule } from '@rnoh/react-native-openharmony/ts';
 import errorManager from '@ohos.app.ability.errorManager';
 import process from '@ohos.process';
 import router from '@ohos.router';
