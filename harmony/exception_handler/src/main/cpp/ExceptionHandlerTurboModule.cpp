@@ -27,19 +27,19 @@
 using namespace rnoh;
 using namespace facebook;
 
-static jsi::Value _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerforNativeException(
+static jsi::Value _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerForNativeException(
   jsi::Runtime &rt,
   react::TurboModule &turboModule,
   const jsi::Value *args,
   size_t count)
 {
-  return static_cast<ArkTSTurboModule &>(turboModule).call(rt, "setHandlerforNativeException", args, count);
+  return static_cast<ArkTSTurboModule &>(turboModule).call(rt, "setHandlerForNativeException", args, count);
 }
 
 ExceptionHandlerTurboModuleSpecJSI::ExceptionHandlerTurboModuleSpecJSI(
   const ArkTSTurboModule::Context ctx,
   const std::string name): ArkTSTurboModule(ctx, name)
 {
-  methodMap_["setHandlerforNativeException"] =
-    MethodMetadata{3, _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerforNativeException};
+  methodMap_["setHandlerForNativeException"] =
+    MethodMetadata{3, _hostFunction_ExceptionHandlerTurboModuleSpecJSI_setHandlerForNativeException};
 }
