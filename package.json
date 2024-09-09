@@ -1,6 +1,6 @@
 {
   "name": "@react-native-oh-tpl/react-native-exception-handler",
-  "version": "2.10.10-0.1.6",
+  "version": "2.10.10-0.1.7",
   "description": "A react native module that lets you to register a global error handler that can capture fatal/non fatal uncaught exceptions.",
   "react-native": "src/index",
   "source": "src/index",
