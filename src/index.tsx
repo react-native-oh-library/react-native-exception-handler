@@ -35,11 +35,11 @@ export const setNativeExceptionHandler = (handler = noop, forceAppQuit = true, e
     return;
   }
   if (Platform.OS === "ios") {
-    ExceptionHandlerTurboModule.setHandlerforNativeException(handler, executeDefaultHandler);
+    ExceptionHandlerTurboModule.setHandlerForNativeException(handler, executeDefaultHandler);
 	// @ts-ignore
   } else if (Platform.OS === "harmony") {
-    ExceptionHandlerTurboModule.setHandlerforNativeException(handler, forceAppQuit, executeDefaultHandler);
+    ExceptionHandlerTurboModule.setHandlerForNativeException(handler, forceAppQuit, executeDefaultHandler);
   } else {
-    ExceptionHandlerTurboModule.setHandlerforNativeException(handler, forceAppQuit, executeDefaultHandler);
+    ExceptionHandlerTurboModule.setHandlerForNativeException(handler, forceAppQuit, executeDefaultHandler);
   }
 };

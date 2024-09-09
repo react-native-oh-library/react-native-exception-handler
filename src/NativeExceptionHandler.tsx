@@ -26,7 +26,7 @@ import type { TurboModule } from "react-native/Libraries/TurboModule/RCTExport";
 import { TurboModuleRegistry } from 'react-native';
 
 interface ExceptionHandlerTurboModuleProtocol {
-    setHandlerforNativeException(
+    setHandlerForNativeException(
       handler: (errMsg: string) => void,
       forceAppQuit?: boolean,
       executeDefaultHandler?: boolean
