@@ -6,7 +6,7 @@
   "name": "@react-native-oh-tpl/react-native-exception-handler",
   "description": "",
   "main": "index.ets",
-  "version": "2.10.10-0.1.6",
+  "version": "2.10.10-0.1.7",
   "dependencies": {
     "@rnoh/react-native-openharmony": "file:../react_native_openharmony"
   }
